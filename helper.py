@@ -312,4 +312,17 @@ def compare_history(old_history, new_history, initial_epochs=5):
 
   plt.title("Training and Validation accuracy")
 
+  # plt.figure(figsize=(8,8))
+  plt.subplot(2,1,2)
+  plt.plot(total_loss, label="training_loss")
+  plt.plot(total_val_loss, label="validaiton_loss")
+
+  plt.plot([initial_epochs-1, initial_epochs-1], plt.ylim(), label="Start fine tuning")
+  plt.legend(loc="lower right")
+
+  plt.title("Training and Validation loss")
+
+
+
+
 
