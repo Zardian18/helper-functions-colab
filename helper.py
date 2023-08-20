@@ -284,3 +284,32 @@ def calculate_results(y_true, y_pred):
                   "recall": model_recall,
                   "f1": model_f1}
   return model_results
+
+
+def compare_history(old_history, new_history, initial_epochs=5):
+
+  """
+  Compares history after fine tuning
+  """
+
+  acc=old_history.history["accuracy"]
+  loss=old_history.history["loss"]
+  val_acc=old_history.history["val_accuracy"]
+  val_loss=old_history.history["val_loss"]
+
+  total_acc= acc+ new_history.history["accuracy"]
+  total_loss= loss+ new_history.history["loss"]
+  total_val_acc= val_acc+ new_history.history["val_accuracy"]
+  total_val_loss= val_loss+ new_history.history["val_loss"]
+
+  plt.figure(figsize=(8,8))
+  plt.subplot(2,1,1)
+  plt.plot(total_acc, label="training_accuracy")
+  plt.plot(total_val_acc, label="validaiton_accuracy")
+
+  plt.plot([initial_epochs-1, initial_epochs-1], plt.ylim(), label="Start fine tuning")
+  plt.legend(loc="lower right")
+
+  plt.title("Training and Validation accuracy")
+
+
