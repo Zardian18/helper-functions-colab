@@ -529,6 +529,27 @@ def morph_faces(data, vae):
         sub.axis("off")
         sub.imshow(changed_image)
 
+
+    def get_config(self):
+        config = super().get_config()
+        config.update(
+            {
+                "max_wavelength": self.max_wavelength,
+            }
+        )
+        return config
+
+        counter += 1
+
+    img = example_images[1]
+    sub = fig.add_subplot(1, len(factors) + 2, counter)
+    sub.axis("off")
+    sub.imshow(img)
+
+    plt.show()
+
+
+
 def parse_midi_files(file_list, parser, seq_len, parsed_data_path=None):
     notes_list = []
     duration_list = []
@@ -705,20 +726,3 @@ class SinePositionEncoding(keras.layers.Layer):
 
         return tf.broadcast_to(positional_encodings, input_shape)
 
-    def get_config(self):
-        config = super().get_config()
-        config.update(
-            {
-                "max_wavelength": self.max_wavelength,
-            }
-        )
-        return config
-
-        counter += 1
-
-    img = example_images[1]
-    sub = fig.add_subplot(1, len(factors) + 2, counter)
-    sub.axis("off")
-    sub.imshow(img)
-
-    plt.show()
